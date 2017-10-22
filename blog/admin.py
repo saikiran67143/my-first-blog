@@ -1,5 +1,8 @@
 from django.contrib import admin
-from .models import Post
+from .import models
+#from django_ModelAdmin.admin import ModelAdmin
+class PostAdmin(admin.ModelAdmin):
+    list_display = ("title","created_date")
+    prepopulated_fields={"slug":("title",)}
 
-# Register your models here.
-admin.site.register(Post)
+admin.site.register(models.Post,PostAdmin)
